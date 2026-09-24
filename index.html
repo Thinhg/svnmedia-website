@@ -3,18 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SVN24h - Sắp ra mắt</title>
+    <title>SVN24h - Cổng Thông Tin Cộng Đồng</title>
     <style>
-        body { font-family: 'Montserrat', sans-serif; background-color: #111; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; }
-        h1 { color: #f39c12; font-size: 3em; margin-bottom: 10px; }
-        p { font-size: 1.2em; max-width: 600px; color: #ccc; }
-        .contact { margin-top: 30px; font-weight: bold; color: #f39c12; }
+        /* CSS Cơ bản & Khởi tạo */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #1a1c1a; /* Đen xám */
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Tông màu quân sự */
+        :root {
+            --primary: #2b3d2b; /* Xanh Olive đậm */
+            --secondary: #4a5d23; /* Xanh lính */
+            --accent: #d4af37; /* Vàng kim/Huy chương */
+            --dark: #121212;
+            --text-light: #f5f5f5;
+        }
+
+        /* Header & Điều hướng */
+        header {
+            background-color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo h1 {
+            color: var(--accent);
+            font-size: 24px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover { color: var(--accent); }
+
+        /* Phần Hero (Banner chính) */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1595590424283-b8f1784cb2c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        .hero h2 { color: var(--accent); font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; max-width: 800px; }
+
+        /* Cấu trúc Bố cục chính */
+        .container { display: flex; flex-wrap: wrap; gap: 20px; padding: 40px 5%; }
+        .main-content { flex: 3; min-width: 300px; }
+        .sidebar { flex: 1; min-width: 250px; background-color: #242624; padding: 20px; border-radius: 5px; border-top: 4px solid var(--secondary); }
+
+        /* Các Thẻ Bài viết / Thông báo */
+        .section-title {
+            color: var(--accent);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .news-card {
+            background-color: #2a2d2a;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+            transition: transform 0.2s;
+        }
+        .news-card:hover { transform: translateX(5px); }
+        .news-date { font-size: 0.85rem; color: #a0a0a0; margin-bottom: 5px; }
+        .news-title { color: var(--text-light); font-size: 1.2rem; margin-bottom: 8px; }
+        .news-excerpt { font-size: 0.95rem; }
+
+        /* Danh sách sự kiện (Sidebar) */
+        .event-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #333;
+        }
+        .event-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .event-title { font-weight: bold; color: var(--text-light); }
+        .event-time { font-size: 0.85rem; color: var(--accent); }
+
+        /* Footer & Tuyên bố trách nhiệm */
+        footer {
+            background-color: var(--dark);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+        }
+        .disclaimer {
+            font-size: 0.85rem;
+            color: #888;
+            max-width: 900px;
+            margin: 0 auto 15px auto;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
-    <h1>SVN24h</h1>
-    <p>Trang web chính thức của chúng tôi đang được nâng cấp để mang lại trải nghiệm tốt nhất cho bạn.</p>
-    <p>Chúng tôi sẽ sớm quay trở lại với những dự án hình ảnh và video ấn tượng!</p>
-    <div class="contact">Liên hệ công việc: contact@svn24h.vn | Hotline: 09xx.xxx.xxx</div>
+
+    <header>
+        <div class="logo">
+            <h1>SVN24h</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#thong-bao">Thông báo</a></li>
+                <li><a href="#su-kien">Sự kiện</a></li>
+                <li><a href="#hinh-anh">Hình ảnh</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h2>CỔNG THÔNG TIN NỘI BỘ</h2>
+        <p>Cập nhật nhanh chóng, chính xác các chỉ thị, hoạt động và hình ảnh mới nhất từ lực lượng.</p>
+    </div>
+
+    <div class="container">
+        <!-- Cột Nội dung chính (Thông báo) -->
+        <div class="main-content" id="thong-bao">
+            <h2 class="section-title">Thông báo mới nhất</h2>
+            
+            <div class="news-card">
+                <div class="news-date">Ngày 24 tháng 09, 2026</div>
+                <h3 class="news-title">Chỉ thị từ Cục Quân huấn: Cập nhật quy định huấn luyện tân binh kỳ 3</h3>
+                <p class="news-excerpt">Ban chỉ huy yêu cầu toàn bộ sĩ quan và hạ sĩ quan phụ trách công tác huấn luyện nắm rõ các sửa đổi trong giáo trình mới để áp dụng vào các đợt thao diễn sắp tới.</p>
+            </div>
+
+            <div class="news-card">
+                <div class="news-date">Ngày 22 tháng 09, 2026</div>
+                <h3 class="news-title">Quyết định bổ nhiệm nhân sự tại Trung đoàn 3</h3>
+                <p class="news-excerpt">Thông báo về việc điều chỉnh và phân công lại nhiệm vụ đối với các cấp chỉ huy trực thuộc Trung đoàn 3 nhằm nâng cao hiệu quả tác chiến phối hợp.</p>
+            </div>
+
+            <div class="news-card">
+                <div class="news-date">Ngày 20 tháng 09, 2026</div>
+                <h3 class="news-title">Kế hoạch triển khai lực lượng Kiểm soát quân sự</h3>
+                <p class="news-excerpt">Tăng cường công tác duy trì kỷ luật, quân dung kỳ đạo trong các khu vực tập trung. Yêu cầu các đơn vị liên quan phối hợp chặt chẽ.</p>
+            </div>
+        </div>
+
+        <!-- Cột Sidebar (Sự kiện & Lịch trình) -->
+        <div class="sidebar" id="su-kien">
+            <h2 class="section-title">Lịch hoạt động</h2>
+            
+            <div class="event-item">
+                <div class="event-title">Huấn luyện chiến thuật bộ binh</div>
+                <div class="event-time">⏱ 20:00 - Chủ nhật tuần này</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-title">Họp giao ban sĩ quan</div>
+                <div class="event-time">⏱ 21:00 - Thứ sáu tuần này</div>
+            </div>
+
+            <div class="event-item">
+                <div class="event-title">Sự kiện: Diễn tập phòng thủ căn cứ</div>
+                <div class="event-time">⏱ 19:30 - Đầu tháng sau</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="disclaimer">
+            * Khuyến cáo: SVN24h là website nội bộ được xây dựng để đăng tải thông báo, sự kiện, hình ảnh và hoạt động của cộng đồng game mô phỏng quân sự. Website này KHÔNG sử dụng để thiết lập báo điện tử, tạp chí điện tử, mạng xã hội hoặc trang thông tin điện tử tổng hợp.
+        </div>
+        <p>&copy; 2026 SVN24h Community. Hoạt động trên nền tảng giả lập.</p>
+    </footer>
+
 </body>
 </html>
